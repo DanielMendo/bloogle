@@ -14,16 +14,11 @@ class ImageController extends Controller
 
         $nameImage = Str::uuid() . "." . $image->extension();
 
-        $imageServer = Image::make($image);
+        $imageServer = Image::read($image);
 
         $imagePath = public_path('uploads') . '/' . $nameImage;
         $imageServer->save($imagePath);
         
-        try {
-            // Tu lógica de carga aquí
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
         return response()->json(['image' => $nameImage]);
     }
 }

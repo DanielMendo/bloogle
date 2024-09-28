@@ -36,10 +36,14 @@
 
     <div class="d-flex justify-content-center">
         <div class="card mt-3" style="width: 250px; height: 250px; border: none;">
-            <form action="{{route('image.store')}}" method="post" enctype="multipart/form-data" id="dropzone" class="dropzone w-100 h-100 d-flex justify-content-center align-items-center" style="border: 2px dashed #cccccc; background-color: #f9f9f9;">
+            <form action="{{route('image.store')}}" method="POST" enctype="multipart/form-data" id="dropzone" class="dropzone w-100 h-100 d-flex justify-content-center align-items-center" style="border: 2px dashed #cccccc; background-color: #f9f9f9;">
                 @csrf
             </form>
         </div>
+    </div>
+
+    <div>
+        <input type="hidden" id="inputImage" name="image">
     </div>
 
     <div class="d-flex justify-content-center mt-3 mb-5">

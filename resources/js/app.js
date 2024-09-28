@@ -15,6 +15,11 @@ const dropzone = new Dropzone("#dropzone", {
     uploadMultiple: false,
 });
 
+dropzone.on("success", function(file, response){
+    console.log(response.image)
+
+    document.querySelector('#inputImage').value = response.image
+})
 
 button.addEventListener('click', function() {
     form.submit()

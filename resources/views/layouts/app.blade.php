@@ -17,7 +17,7 @@
                 <a href="#" class="text-secondary text-decoration-none link-hover">Inicio</a>
                 <a href="#" class="text-secondary text-decoration-none link-hover">Recientes</a>
                 <a href="#" class="text-secondary text-decoration-none link-hover">Sobre mí</a>
-                <a href="#" class="text-secondary text-decoration-none link-hover">Crear</a>
+                <a href=" {{route('post.create')}} " class="text-secondary text-decoration-none link-hover">Crear</a>
             </nav>
 
             <div class="d-flex align-items-center">
