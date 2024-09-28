@@ -1,0 +1,20 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+
+header .link-hover:hover{
+    color: #000000!important;
+    text-decoration: underline;
+}
+
+#hero {
+    min-height: calc(100vh - 10rem);
+    background-image: url(/img/hero.jpeg);
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+.ck-editor__editable_inline {
+    height: 300px;
+}
