@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,6 +13,6 @@ class HomeController extends Controller
     {   $categories = Category::all();
         $posts = Post::all();
 
-        return view('index', compact('categories', 'posts'));
+        return view('dashboard', compact('categories', 'posts'));
     }
 }

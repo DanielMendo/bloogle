@@ -58,7 +58,8 @@ class PostResource extends Resource
                     ->formatStateUsing(fn ($state) => \App\Models\Category::find($state)->name ?? 'N/A')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
-                    ->searchable(),
+                    ->searchable()
+                    ->limit(50),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

@@ -26,6 +26,11 @@ class CategoryResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\Textarea::make('description')
+                    ->required()
+                    ->rows(5)
+                    ->cols(20)
+                    ->maxLength(1000),
             ]);
     }
 

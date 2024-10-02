@@ -9,20 +9,25 @@
 
 @section('content')
 <div class="col-8 mx-auto">
-    <h1 class="fs-4 text-center m-5 text-secondary">Compartenos tu conocimiento</h1>
+    <h1 class="fs-4 text-center m-5 text-secondary">Edita tu publicación</h1>
     
-    <form action=" {{route('post.store', ['post' => $post->id])}} " method="POST" id="form-create">
+    <form action=" {{route('post.update', $post->id)}} " method="POST" id="form-create">
         @csrf 
+        @method('PUT')
         <div class="row">
             <div class="col-8 mb-3">
-                <label for="title" class="form-label fw-bold">Título</label>
-                <input type="text" class="form-control" id="title" name="title" required>
+                <label for="title" class="form-label fw-bold">Titulo</label>
+                <input type="text" class="form-control" id="title" name="title" value="{{$post->title}}" required>
             </div>
             <div class="col-4 mb-3">
                 <label for="category_id" class="form-label fw-bold">Categoría</label>
                 <select class="form-select" id="category_id" name="category_id" required>
                     @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @if ($post->category_id == $category->id)
+                            <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                            @else
+                            <option value="{{ $category->id }}" >{{ $category->name }}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
@@ -30,11 +35,11 @@
 
         <div class="mb-3">
             <label for="content" class="form-label fw-bold">Contenido</label>
-            <textarea class="form-control" id="content" name="content" required></textarea>
+            <textarea class="form-control" id="content" name="content" required> {{$post->content}} </textarea>
         </div>
 
         <div>
-            <input type="hidden" id="inputImage" name="image">
+            <input type="hidden" id="inputImage" name="image" value=" {{$post->image}} ">
         </div>
     </form>
 

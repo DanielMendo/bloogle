@@ -2,7 +2,7 @@
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 
 
-header .link-hover:hover{
+.link-hover:hover{
     color: #000000!important;
     text-decoration: underline;
 }
@@ -17,4 +17,66 @@ header .link-hover:hover{
 
 .ck-editor__editable_inline {
     height: 300px;
+}
+
+img {
+    max-width: 100%;
+}
+
+.swiper {
+    width: 100%;
+}
+
+.name-link:hover {
+    color: blue!important;
+}
+
+#like:hover {
+    color: red;
+    cursor: pointer;
+}
+
+#share:hover {
+    color: blue;
+    cursor: pointer;
+}
+
+.share-content {
+    position: relative;
+}
+
+.share-btn {
+    position: relative;
+    border: none;
+    padding: 0;
+    background: none;
+    z-index: 1;
+}
+
+.share-options {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    width: 400px;
+    padding: 2rem;
+    background-color: white; 
+    border: 1px solid #ccc; 
+    z-index: 10;
+    border-radius: 0.5rem;
+    display: none;
+}
+
+.share-content:hover .share-options {
+    display: block;
+}
+
+#btn-copy {
+    border: none;
+}
+
+#input-cp {
+    border-radius: 0.3rem;
+}
+#msg-copy {
+    display: none;
 }
