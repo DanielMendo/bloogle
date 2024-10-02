@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-8 mb-3">
                 <label for="title" class="form-label fw-bold">Título</label>
-                <input type="text" class="form-control" id="title" name="title" required>p
+                <input type="text" class="form-control" id="title" name="title" required>
             </div>
             <div class="col-4 mb-3">
                 <label for="category_id" class="form-label fw-bold">Categoría</label>
