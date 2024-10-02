@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @stack('styles')
-    <title>@yield('title')</title>
+    <title>Blogool</title>
+    <link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/png">
     @vite(['resources/js/app.js', 'resources/css/app.css'])
 </head>
 <body>
