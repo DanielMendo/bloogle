@@ -45,4 +45,3 @@ Route::get('profile/{user}', [ProfileController::class, 'show'])->name('profile.
 Route::get('profile/edit/{user}', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::put('profile/update/{user}', [ProfileController::class, 'update'])->name('profile.update');
 
-Route::get('/test-upload', [TestController::class, 'testUpload']);

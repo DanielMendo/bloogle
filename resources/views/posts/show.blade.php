@@ -26,7 +26,7 @@
             </div>
             <h2 class="mb-5">{{ $post->title }}</h2>
             <p class="mb-5">{!! $post->content !!}</p>
-            <img src="{{ asset('uploads/' . $post->image) }}" class="mt-5 w-100" alt="">
+            <img src="{{ Storage::disk('s3')->url('uploads/' . $post->image) }}" class="mt-5 w-100" alt="">
             <hr class="mt-5">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center gap-3">
@@ -67,7 +67,7 @@
 
                 <div class="mt-4 d-flex align-items-start">
                     @foreach ($post->comments as $comment)
-                        <img src="{{ asset('uploads/' . $comment->user->profile_picture) }}" alt="" class="rounded-circle me-3" style="height: 50px; width: 50px; object-fit: cover;">
+                        <img src="{{ Storage::disk('s3')->url('uploads/' . $comment->user->profile_picture) }}" alt="" class="rounded-circle me-3" style="height: 50px; width: 50px; object-fit: cover;">
                         <div class="border p-3 bg-light shadow-sm rounded w-100">
                             <div class="d-flex gap-3 align-items-center">
                                 <strong class="d-block mb-1">{{ $comment->user->name }}</strong>

@@ -26,7 +26,7 @@
                 @if ($user->profile_picture == null)
                         <p class="text-center">No hay imagen de perfil</p>
                     @else
-                        <img src="{{ asset('uploads/' . $user->profile_picture) }}" alt="" style="height: 400px">
+                    <img src="{{ Storage::disk('s3')->url('uploads/' . $user->profile_picture) }}" alt="" style="height: 400px">
                 @endif
             </div>
         </div>

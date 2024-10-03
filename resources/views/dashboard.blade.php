@@ -51,7 +51,7 @@
                 <div class="card m-5">
                     <div class="card-body p-0">
                         <a href="{{ route('post.show', ['user' => $post->user->id, 'post' => $post->id]) }}" class="text-decoration-none text-black">
-                            <img src="{{ asset('uploads/' . $post->image) }}" alt="Descripción de la imagen" class="w-100">
+                            <img src="{{ Storage::disk('s3')->url('uploads/' . $post->image) }}" alt="Descripción de la imagen" class="w-100">
                             <div style="padding: 3rem!important;">
                                 <div class="d-flex align-items-center gap-3">
                                     <p class="mt-3"><span class="fw-bold">Autor: </span> {{$post->user->name}} </p>
