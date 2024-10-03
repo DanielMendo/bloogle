@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CommentController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegisterController;
-use Illuminate\Support\Facades\Route;
 
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
@@ -43,3 +44,5 @@ Route::get('categories/{category:name}', [CategoryController::class, 'show'])->n
 Route::get('profile/{user}', [ProfileController::class, 'show'])->name('profile.show');
 Route::get('profile/edit/{user}', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::put('profile/update/{user}', [ProfileController::class, 'update'])->name('profile.update');
+
+Route::get('/test-upload', [TestController::class, 'testUpload']);
