@@ -9,6 +9,7 @@ const button = document.getElementById('submit-create');
 Dropzone.autoDiscover = false;
 
 const dropzone = new Dropzone("#dropzone", {
+    url: '/image',
     dictDefaultMessage: 'Sube aquí tu imagen',
     acceptedFiles: ".png, .jpg, .jpeg, .gif, .webp",
     addRemoveLinks: true,
