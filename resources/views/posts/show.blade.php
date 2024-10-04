@@ -68,13 +68,13 @@
                 @endif
 
                 <div class="mt-4">
-                    @foreach ($post->comments as $comment)
+                    @foreach ($post->comments->reverse() as $comment)
                         <div class="d-flex align-items-start mb-3">
                             <img src="{{ Storage::disk('s3')->url('uploads/' . $comment->user->profile_picture) }}" alt="" class="rounded-circle me-3" style="height: 50px; width: 50px; object-fit: cover;">
                             
                             <div class="border p-3 bg-light shadow-sm rounded w-100">
                                 <div class="d-flex gap-3 align-items-center">
-                                    <a href="{{ route('profile.show', $post->user->id) }}" class="text-decoration-none text-black"><strong class="d-block mb-1">{{ $comment->user->name }}</strong></a>
+                                    <a href="{{ route('profile.show', $comment->user->id) }}" class="text-decoration-none text-black"><strong class="d-block mb-1">{{ $comment->user->name }}</strong></a>
                                     <span class="text-muted" style="font-size: 0.9rem;">
                                         {{ $comment->created_at->diffForHumans() }}
                                     </span>
