@@ -70,7 +70,7 @@
                 <div class="mt-4">
                     @foreach ($post->comments as $comment)
                         <div class="d-flex align-items-start mb-3">
-                            <img src="{{ asset{{ Storage::disk('s3')->url('uploads/' . $comment->user->profile_picture) }} }}" alt="" class="rounded-circle me-3" style="height: 50px; width: 50px; object-fit: cover;">
+                            <img src="{{ Storage::disk('s3')->url('uploads/' . $comment->user->profile_picture) }}" alt="" class="rounded-circle me-3" style="height: 50px; width: 50px; object-fit: cover;">
                             
                             <div class="border p-3 bg-light shadow-sm rounded w-100">
                                 <div class="d-flex gap-3 align-items-center">
