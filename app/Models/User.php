@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
-use Filament\Models\Contracts\FilamentUser; // Asegúrate de importar este contrato
+use Filament\Models\Contracts\FilamentUser; 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Filament\Panel; // Asegúrate de importar Panel
+use Filament\Panel; 
 
-class User extends Authenticatable implements FilamentUser // Implementa FilamentUser
+class User extends Authenticatable implements FilamentUser 
 {
     use HasFactory, Notifiable;
 
@@ -66,7 +66,7 @@ class User extends Authenticatable implements FilamentUser // Implementa Filamen
      */
     public function canAccessPanel(Panel $panel): bool
     {
-        // Permite el acceso a todos los usuarios
-        return true;
+        // Permite el acceso solo a usuarios con correos que terminen con @admin.com
+        return str_ends_with($this->email, '@admin.com');
     }
 }
