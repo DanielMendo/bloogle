@@ -2,19 +2,21 @@
 
 @section('content')
 
-<div class="container m-5">
+<div class="container m-5 mx-auto">
     <div class="m-5">
         <div class="row">
             <div class="col-8 d-flex flex-column justify-content-center align-items-start">
                 <div class="mx-auto" style="max-width: 75%">
-                    <h2 class="mb-5 fs-2"> {{ $user->name }} </h2>
-                    <p class="fs-5">
-                        @if ($user->bio == null)
-                            No hay información aún
-                        @else
-                            {!! $user->bio !!}
-                        @endif
-                    </p>
+                    <div style="width: 100%; word-wrap: break-word;">
+                        <h2 class="mb-5 fs-2"> {{ $user->name }} </h2>
+                        <p class="fs-5">
+                            @if ($user->bio == null)
+                                No hay información aún
+                            @else
+                                {!! $user->bio !!}
+                            @endif
+                        </p>
+                    </div>
                     <div class="d-flex gap-4 justify-content-center mt-5">
                         <a href="{{ $user->facebook }}" target="_blank"><i class="bi bi-facebook fs-3 text-primary"></i></a>
                         <a href="{{ $user->twitter }}" target="_blank"><i class="bi bi-twitter-x fs-3 text-black"></i></a>
@@ -51,7 +53,7 @@
                     <div class="col-4 mb-5">
                         <a href="{{ route('post.show', ['user' => $post->user->id, 'post' => $post->id]) }}" class="text-decoration-none text-black">
                             <div class="card">
-                                <img src="{{ asset('uploads/' . $post->image) }}" class="card-img-top" alt="Descripción de la imagen" style="height: 250px">
+                                <img src="{{ Storage::disk('s3')->url('uploads/' . $post->image) }}" class="card-img-top" alt="Descripción de la imagen" style="height: 250px">
                                 <div class="card-body" style="height: 230px">
                                     <p><span class="fw-bold">Autor: </span> {{ Str::limit($post->user->name, 60) }} </p>
                                     <h5 class="card-title" style="font-size: 1.1rem"> {{ Str::limit($post->title, 40) }} </h5>

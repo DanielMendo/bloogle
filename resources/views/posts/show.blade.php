@@ -24,8 +24,10 @@
                     </div>
                 @endif
             </div>
-            <h2 class="mb-5">{{ $post->title }}</h2>
-            <p class="mb-5">{!! $post->content !!}</p>
+            <div style="width: 100%; word-wrap: break-word;">
+                <h2 class="mb-5">{{ $post->title }}</h2>
+                <p class="mb-5">{!! $post->content !!}</p>
+            </div>
             <img src="{{ Storage::disk('s3')->url('uploads/' . $post->image) }}" class="mt-5 w-100" alt="">
             <hr class="mt-5">
             <div class="d-flex justify-content-between align-items-center">
@@ -68,7 +70,8 @@
                 <div class="mt-4">
                     @foreach ($post->comments as $comment)
                         <div class="d-flex align-items-start mb-3">
-                            <img src="{{ asset('uploads/' . $comment->user->profile_picture) }}" alt="" class="rounded-circle me-3" style="height: 50px; width: 50px; object-fit: cover;">
+                            <img src="{{ asset{{ Storage::disk('s3')->url('uploads/' . $comment->user->profile_picture) }} }}" alt="" class="rounded-circle me-3" style="height: 50px; width: 50px; object-fit: cover;">
+                            
                             <div class="border p-3 bg-light shadow-sm rounded w-100">
                                 <div class="d-flex gap-3 align-items-center">
                                     <strong class="d-block mb-1">{{ $comment->user->name }}</strong>
