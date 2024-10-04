@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Filament\Models\Contracts\FilamentUser; // Asegúrate de importar este contrato
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Filament\Panel; // Asegúrate de importar Panel
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser // Implementa FilamentUser
 {
     use HasFactory, Notifiable;
 
@@ -24,7 +25,7 @@ class User extends Authenticatable
         'instagram',
         'password',
         'profile_picture',
-        'bio'
+        'bio',
     ];
 
     /**
@@ -58,5 +59,14 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * Método para verificar el acceso al panel de administración.
+     */
+    public function canAccessPanel(Panel $panel): bool
+    {
+        // Permite el acceso a todos los usuarios
+        return true;
     }
 }
