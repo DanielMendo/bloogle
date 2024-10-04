@@ -65,30 +65,33 @@
                     </form>
                 @endif
 
-                <div class="mt-4 d-flex align-items-start">
+                <div class="mt-4">
                     @foreach ($post->comments as $comment)
-                        <img src="{{ Storage::disk('s3')->url('uploads/' . $comment->user->profile_picture) }}" alt="" class="rounded-circle me-3" style="height: 50px; width: 50px; object-fit: cover;">
-                        <div class="border p-3 bg-light shadow-sm rounded w-100">
-                            <div class="d-flex gap-3 align-items-center">
-                                <strong class="d-block mb-1">{{ $comment->user->name }}</strong>
-                                <span class="text-muted" style="font-size: 0.9rem;">
-                                    {{ $comment->created_at->diffForHumans() }}
-                                </span>
-                            </div>
-                            <p class="mb-0" style="font-size: 0.9rem; line-height: 1.5;">{{ $comment->content }}</p>
-
-                            @if (Auth::check() && Auth::id() === $comment->user_id)
-                                <div class="d-flex justify-content-end">
-                                    <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn text-danger btn-sm mt-2">Eliminar</button>
-                                    </form>
+                        <div class="d-flex align-items-start mb-3">
+                            <img src="{{ asset('uploads/' . $comment->user->profile_picture) }}" alt="" class="rounded-circle me-3" style="height: 50px; width: 50px; object-fit: cover;">
+                            <div class="border p-3 bg-light shadow-sm rounded w-100">
+                                <div class="d-flex gap-3 align-items-center">
+                                    <strong class="d-block mb-1">{{ $comment->user->name }}</strong>
+                                    <span class="text-muted" style="font-size: 0.9rem;">
+                                        {{ $comment->created_at->diffForHumans() }}
+                                    </span>
                                 </div>
-                            @endif
+                                <p class="mb-0" style="font-size: 0.9rem; line-height: 1.5;">{{ $comment->content }}</p>
+                
+                                @if (Auth::check() && Auth::id() === $comment->user_id)
+                                    <div class="d-flex justify-content-end">
+                                        <form action="{{ route('comment.destroy', $comment->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn text-danger btn-sm mt-2">Eliminar</button>
+                                        </form>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
                     @endforeach
                 </div>
+                
             </div>
         </div>
     </div>
