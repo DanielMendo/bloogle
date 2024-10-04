@@ -74,7 +74,7 @@
                             
                             <div class="border p-3 bg-light shadow-sm rounded w-100">
                                 <div class="d-flex gap-3 align-items-center">
-                                    <strong class="d-block mb-1">{{ $comment->user->name }}</strong>
+                                    <a href="{{ route('profile.show', $post->user->id) }}" class="text-decoration-none text-black"><strong class="d-block mb-1">{{ $comment->user->name }}</strong></a>
                                     <span class="text-muted" style="font-size: 0.9rem;">
                                         {{ $comment->created_at->diffForHumans() }}
                                     </span>
