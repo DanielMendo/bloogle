@@ -17,7 +17,7 @@
                             <div class="col-6 mb-5">
                                 <a href="{{ route('post.show', ['user' => $post->user->id, 'post' => $post->id]) }}" class="text-decoration-none text-black">
                                     <div class="card">
-                                        <img src="{{ Storage::disk('s3')->url('uploads/' . $user->profile_picture) }}" class="card-img-top" alt="Descripción de la imagen" style="height: 250px">
+                                        <img src="{{ Storage::disk('s3')->url('uploads/' . $post->user->profile_picture) }}" class="card-img-top" alt="Descripción de la imagen" style="height: 250px">
                                         <div class="card-body" style="height: 230px">
                                             <p class=""><span class="fw-bold">Autor: </span> {{Str::limit($post->user->name, 60)}} </p>
                                             <h5 class="card-title" style="font-size: 1.1rem"> {{Str::limit($post->title, 60)}} </h5>
