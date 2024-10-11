@@ -15,7 +15,7 @@
                         @else
                             @foreach ($posts as $post)
                             <div class="col-6 mb-5">
-                                <a href="{{ route('post.show', ['user' => $post->user->id, 'post' => $post->id]) }}" class="text-decoration-none text-black">
+                                <a href="{{ route('post.show', ['user' => $post->user->slug, 'post' => $post->slug]) }}" class="text-decoration-none text-black">
                                     <div class="card">
                                         <img src="{{ Storage::disk('s3')->url('uploads/' . $post->image) }}" class="card-img-top" alt="Descripción de la imagen" style="height: 250px">
                                         <div class="card-body" style="height: 230px">

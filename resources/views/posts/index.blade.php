@@ -10,7 +10,7 @@
                 @foreach ($posts->reverse() as $post)
                 <div class="card m-5">
                     <div class="card-body p-0">
-                        <a href="{{ route('post.show', ['user' => $post->user->id, 'post' => $post->id]) }}" class="text-decoration-none text-black">
+                        <a href="{{ route('post.show', ['user' => $post->user->slug, 'post' => $post->slug]) }}" class="text-decoration-none text-black">
                             <img src="{{ Storage::disk('s3')->url('uploads/' . $post->image) }}" alt="Descripción de la imagen" class="w-100">
                             <div style="padding: 3rem!important;">
                                 <div class="d-flex align-items-center gap-3">

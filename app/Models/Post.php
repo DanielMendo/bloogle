@@ -13,6 +13,7 @@ class Post extends Model
         'user_id',
         'category_id',
         'title',
+        'slug',
         'content',
         'image'
     ];
@@ -30,5 +31,14 @@ class Post extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function checklike(User $user)
+    {
+        return $this->likes->contains('user_id', $user->id);
     }
 }

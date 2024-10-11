@@ -37,7 +37,7 @@
                         </div>
                         <button type="submit" class="btn btn-primary mt-5 w-100" style="border-radius: 0">Iniciar Sesión</button>
 
-                        <p class="text-end mt-5 fw-bold" style="font-size: 1.1rem">
+                        <p class="text-end mt-5 fw-bold" style="font-size: 1rem">
                             <a href=" {{route('register')}} " class="text-decoration-none">Registrate</a>
                         </p>
                     </form>

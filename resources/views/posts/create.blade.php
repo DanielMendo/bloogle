@@ -58,10 +58,22 @@
 @push('scripts')
 <script>
     ClassicEditor
-        .create(document.querySelector('#content'),)
+        .create(document.querySelector('#content'), {
+            removePlugins: ['ImageUpload', 'EasyImage'],
+            allowedContent: {
+                $1: {
+                    elements: {
+                        '$1': true,
+                    },
+                    attributes: true,
+                    styles: true,
+                }
+            },
+        })
         .catch(error => {
             console.error(error);
         });
+
 </script>
 
 @endpush

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,6 +31,7 @@ class ProfileController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255',
             'bio' => 'nullable|string',
             'facebook' => 'nullable|string|max:255',
             'twitter' => 'nullable|string|max:255',
@@ -39,6 +41,7 @@ class ProfileController extends Controller
 
         $user->update($validatedData);
 
-        return redirect()->route('profile.show', $user->id);
+        return redirect()->route('profile.show', $user->slug);
     }
+
 }

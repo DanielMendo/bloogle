@@ -24,11 +24,14 @@
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" name="password" id="password" class="form-control" style="border: none; border-bottom: 2px solid #000000; border-radius: 0;" required>
+                        <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" style="border: none; border-bottom: 2px solid #000000; border-radius: 0;" required>
+                        @error('password')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary mt-5 w-100" style="border-radius: 0">Registrate</button>
 
-                    <p class="text-end fs-5 mt-5 fw-bold" style="font-size: 1.1rem!important;">
+                    <p class="text-end fs-5 mt-5 fw-bold" style="font-size: 1rem!important;">
                         <a href="{{route('login')}}" class="text-decoration-none">Iniciar Sesión</a>
                     </p>
                 </form>

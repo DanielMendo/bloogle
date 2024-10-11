@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -42,15 +44,18 @@ class PostController extends Controller
             'category_id' => 'required'
         ]);
 
+        $slug = Str::slug($request->title);
+
         $post = Post::create([
             'title' => $request->title,
+            'slug' => $slug,
             'content' => $request->content,
             'image' => $request->image,
             'category_id' => $request->category_id,
             'user_id' => Auth::id()
         ]);
 
-        return redirect()->route('post.show', ['user' => Auth::id(), 'post' => $post->id]);
+        return redirect()->route('post.show', ['user' => Auth::user()->slug, 'post' => $post->slug]);
     }
 
     /**
@@ -59,8 +64,8 @@ class PostController extends Controller
     public function show(User $user, Post $post)
     {
         return view('posts.show', [
-            'post' => $post,
-            'user' => $user
+            'user' => $user,
+            'post' => $post
         ]);
     }
 
@@ -89,7 +94,7 @@ class PostController extends Controller
 
         $post->update($validatedData);
 
-        return redirect()->route('post.show', ['user' => $post->user->id, 'post' => $post->id]);
+        return redirect()->route('post.show', ['user' => $post->user->slug, 'post' => $post->slug]);
     }
 
     /**
@@ -98,8 +103,12 @@ class PostController extends Controller
     public function destroy($postId)
     {
         $post = Post::findOrFail($postId);
+        $imagePath = 'uploads/' . $post->image;
+
+        Storage::disk('s3')->delete($imagePath);
         $post->delete();
+
         
-        return redirect()->route('profile.show', ['user' => Auth::id()]);
+        return redirect()->route('profile.show', ['user' => Auth::user()->slug]);
     }
 }

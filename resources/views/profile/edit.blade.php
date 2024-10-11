@@ -33,6 +33,15 @@
                     <textarea class="form-control" id="content" name="bio" required>{{$user->bio}}</textarea>
                 </div>
                 <div class="mb-3">
+                    <label for="slug" class="form-label fw-bold">Enlace personalizado</label>
+                    <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon3">https://blogool.com/</span>
+                    </div>
+                    <input type="text" class="form-control" id="slug" name="slug" aria-describedby="basic-addon3" value="{{$user->slug}}">
+                    </div>
+                </div>
+                <div class="mb-3">
                     <label for="facebook" class="form-label fw-bold">Facebook</label>
                     <input type="url" class="form-control" id="facebook" name="facebook" value="{{$user->facebook}}">
                 </div>

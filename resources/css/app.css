@@ -53,6 +53,12 @@ img {
     z-index: 1;
 }
 
+.like-btn {
+    border: none;
+    padding: 0;
+    background: none;
+}
+
 .share-options {
     position: absolute;
     bottom: 100%;

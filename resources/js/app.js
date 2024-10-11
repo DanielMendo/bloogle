@@ -48,5 +48,3 @@ new Swiper('.swiper', {
 
   });
 
-
- 
