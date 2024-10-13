@@ -36,15 +36,11 @@
                             <input type="password" name="password" id="password" class="form-control" style="border: none; border-bottom: 2px solid #000000; border-radius: 0;" required>
                         </div>
                         <button type="submit" class="btn btn-primary mt-5 w-100" style="border-radius: 0">Iniciar Sesión</button>
-                    </form>
-                    <div class="d-flex justify-content-between">
-                        <p class="text-end mt-5 fw-bold" style="font-size: 1rem">
-                            <a href="{{route('password.request')}}" class="text-decoration-none">Olvidaste tu contraseña?</a>
-                        </p> 
+
                         <p class="text-end mt-5 fw-bold" style="font-size: 1rem">
                             <a href=" {{route('register')}} " class="text-decoration-none">Registrate</a>
                         </p>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -52,3 +48,4 @@
 </body>
 </html>
 
+password.request

@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function index()
-    {   $categories = Category::all();
+    {   
+        $categories = Category::all();
         
         $ids = Auth::user()->followings->pluck('id')->toArray();
         $posts = Post::whereIn('user_id', $ids)->get();

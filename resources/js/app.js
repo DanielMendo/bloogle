@@ -1,4 +1,5 @@
 import '../css/app.css';
+
 import Dropzone from "dropzone";
 import Swiper from 'swiper';
 

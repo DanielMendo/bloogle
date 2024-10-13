@@ -12,7 +12,8 @@
                             <h2 class="fs-2"> {{ $user->name }} </h2>
                             @auth
                                 @if ($user->id !== auth()->user()->id)
-                                    @if($user->following(Auth::user()))
+                                
+                                    @if(Auth::user()->following($user))
                                         <form action=" {{route('user.unfollow', $user)}} " method="POST">
                                             @method('DELETE')
                                             @csrf

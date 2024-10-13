@@ -59,7 +59,7 @@ Route::middleware('auth')->group(function () {
 Route::get('categories/{category:name}', [CategoryController::class, 'show'])->name('category.show');
 
 // Rutas de perfil
-Route::get('/{user:slug}', [ProfileController::class, 'show'])->name('profile.show');
+Route::get('/profile/{user:slug}', [ProfileController::class, 'show'])->name('profile.show');
 Route::get('profile/edit/{user:slug}', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::put('profile/update/{user}', [ProfileController::class, 'update'])->name('profile.update');
 
@@ -70,3 +70,4 @@ Route::delete('/{user:slug}/destroy', [FollowerController::class, 'destroy'])->n
 // Rutas de imagen
 Route::post('/image', [ImageController::class, 'store'])->name('image.store');
 
+require __DIR__.'/auth.php';
