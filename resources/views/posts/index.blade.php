@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Publicaciones recientes
+@endsection
+
 @section( 'content' )
 
 <section class="m-5">

@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('title')
+    Editar perfil
+@endsection
+
+
 @push('styles')
 <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
 <script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>

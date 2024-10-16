@@ -14,6 +14,7 @@ use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\AccountSettingsController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 
 // Rutas de autenticación
 Route::get('/', [LoginController::class, 'index'])->name('login');
@@ -21,6 +22,8 @@ Route::post('/', [LoginController::class, 'store']);
 Route::get('/logout', [LogoutController::class, 'store'])->name('logout');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
+Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
+Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
 
 // Rutas de notificaciones
 Route::get('/notifications', NotificationController::class)->name('notifications')->middleware('auth');
@@ -59,7 +62,7 @@ Route::middleware('auth')->group(function () {
 Route::get('categories/{category:name}', [CategoryController::class, 'show'])->name('category.show');
 
 // Rutas de perfil
-Route::get('/profile/{user:slug}', [ProfileController::class, 'show'])->name('profile.show');
+Route::get('/{user:slug}', [ProfileController::class, 'show'])->name('profile.show');
 Route::get('profile/edit/{user:slug}', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::put('profile/update/{user}', [ProfileController::class, 'update'])->name('profile.update');
 

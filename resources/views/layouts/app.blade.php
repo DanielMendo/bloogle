@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @stack('styles')
-    <title>Blogool</title>
+    <title>{{ config('app.name') }} - @yield('title')</title>
     <link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/png">
     @vite(['resources/js/app.js', 'resources/css/app.css'])
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -13,8 +13,7 @@
 <body>
     <header class="p-4" style="background-color: #F2F2F2">
         <div class="col-10 mx-auto d-flex justify-content-between align-items-center">
-            <h1 class="fs-3">B l o g o o l</h1>
-
+            <a href="{{route('home')}}" class="text-decoration-none text-black"><h1 class="fs-3">B l o o g l e</h1></a>
             @if (auth()->check())
                 <nav class="d-flex gap-4 align-items-center ">
                     <a href="{{ route('home') }}" class="text-secondary text-decoration-none link-hover">Inicio</a>
@@ -29,7 +28,11 @@
                     <a href="{{route('notifications')}}" class="position-relative">
                         <i class="bi bi-bell text-black"></i>
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            {{ Auth::user()->unreadNotifications->count() }}
+                            {{ Auth::user()->unreadNotifications->reject(function ($notification) {
+                                return (isset($notification->data['liker_slug']) && $notification->data['liker_slug'] === Auth::user()->slug) ||
+                                    (isset($notification->data['follower_slug']) && $notification->data['follower_slug'] === Auth::user()->slug) ||
+                                    (isset($notification->data['commenter_slug']) && $notification->data['commenter_slug'] === Auth::user()->slug);
+                            })->count() }}
                             <span class="visually-hidden">notificaciones no leídas</span>
                         </span>
                     </a>
@@ -58,10 +61,10 @@
         <div class="col-10 mx-auto">
             <div class="row">
                 <div class="col">
-                    <h4 class="fs-5">Blogool</h4>
+                    <h4 class="fs-5">Bloogol</h4>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-decoration-none text-secondary link-hover">¿Quiénes somos?</a></li>
-                        <li><a href="#" class="text-decoration-none text-secondary link-hover">¿Por qué Blogool?</a></li>
+                        <li><a href="#" class="text-decoration-none text-secondary link-hover">¿Por qué Bloogol?</a></li>
                         <li><a href="#" class="text-decoration-none text-secondary link-hover">Deja tu opinion</a></li>
                     </ul>
                 </div>

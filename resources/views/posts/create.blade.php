@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+@section('title')
+    Crear publicación
+@endsection
 
 @push('styles')
 <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>

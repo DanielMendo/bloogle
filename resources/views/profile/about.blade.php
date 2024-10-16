@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    {{ $user->name }}
+@endsection
+
 @section('content')
 
 <div class="container m-5 mx-auto">
@@ -12,8 +16,7 @@
                             <h2 class="fs-2"> {{ $user->name }} </h2>
                             @auth
                                 @if ($user->id !== auth()->user()->id)
-                                
-                                    @if(Auth::user()->following($user))
+                                    @if($user->following(Auth::user()))
                                         <form action=" {{route('user.unfollow', $user)}} " method="POST">
                                             @method('DELETE')
                                             @csrf
@@ -67,7 +70,7 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container-sm">
     <div class="row">
         <div class="col-10 mx-auto">
             <h3 class="fs-4 mb-5 mt-5">Últimas publicaciones</h3>
@@ -79,11 +82,13 @@
                     <div class="col-4 mb-5">
                         <a href="{{ route('post.show', ['user' => $post->user->slug, 'post' => $post->slug]) }}" class="text-decoration-none text-black">
                             <div class="card">
-                                <img src="{{ Storage::disk('s3')->url('uploads/' . $post->image) }}" class="card-img-top" alt="Descripción de la imagen" style="height: 250px">
-                                <div class="card-body" style="height: 230px">
-                                    <p><span class="fw-bold">Autor: </span> {{ Str::limit($post->user->name, 60) }} </p>
-                                    <h5 class="card-title" style="font-size: 1.1rem"> {{ Str::limit($post->title, 40) }} </h5>
-                                    <p class="card-text">{!! Str::limit(Purifier::clean($post->content), 150) !!}</p>
+                                <img src="{{ Storage::disk('s3')->url('uploads/' . $post->image) }}" class="card-img-top" alt="Descripción de la imagen" style="height: 200px">
+                                <div class="card-body" style="height: 200px">
+                                    <p style="font-size: 0.8rem"><span class="fw-bold">Autor: </span> {{ Str::limit($post->user->name, 60) }} </p>
+                                    <h5 class="card-title" style="font-size: 0.9rem"> {{ Str::limit($post->title, 40) }} </h5>
+                                    <div style="font-size: 0.9rem">
+                                        <p>{!! Str::limit(Purifier::clean($post->content), 110) !!}</p>
+                                    </div>
                                 </div>
                             </div>
                         </a>

@@ -27,9 +27,6 @@ img {
     width: 100%;
 }
 
-.name-link:hover {
-    color: blue!important;
-}
 
 #like:hover {
     color: red;
@@ -38,6 +35,15 @@ img {
 
 #share:hover {
     color: blue;
+    cursor: pointer;
+}
+
+#togglePassword {
+    float: right;
+    margin-top: -38px;
+    position: relative;
+    font-size: 1.2rem;
+    margin-right: 0.4rem;
     cursor: pointer;
 }
 

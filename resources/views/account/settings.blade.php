@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Configuración
+@endsection
+
 @section('content')
     <div class="container-sm mt-5">
         <h2 class="fs-4 mb-4 text-center">Configuración de cuenta</h2>
@@ -70,7 +74,9 @@
                             </div>
                             <div class="mb-3">
                                 <label for="new_password" class="form-label">Nueva contraseña</label>
-                                <input type="password" name="new_password" id="new_password" class="form-control @error('new_password') is-invalid @enderror" required style="height: 50px">
+                                <input type="password" name="new_password" id="password" class="form-control @error('new_password') is-invalid @enderror" required style="height: 50px">
+                                <i class="bi bi-eye-slash" id="togglePassword"></i>
+
                                 
                                 <!-- Mostrar error de nueva contraseña -->
                                 @error('new_password')
@@ -118,3 +124,13 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+<script>
+    togglePassword.addEventListener('click', (e) => {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        e.target.classList.toggle('bi-eye');
+    })
+</script>
+@endpush

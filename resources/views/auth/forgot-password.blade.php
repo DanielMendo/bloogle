@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }} - Forgot Password</title>
-
+    <title>{{ config('app.name') }} - ¿Olvidaste tu contraseña?</title>
+    <link rel="icon" href="{{ asset('img/favicon.png') }}" type="image/png">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -21,7 +20,7 @@
     <div class="container-fluid" style="height: 100vh;">
         <div class="h-100 d-flex flex-column justify-content-center align-items-center p-4" style="background-color: #f7f7f7;">
             <div class="p-5 bg-white shadow-sm" style="width: 50%; max-width: 500px;">
-                <h2 class="text-center text-secondary fs-4 mb-4">{{ __('Forgot your password?') }}</h2>
+                <h2 class="text-center text-secondary fs-4 mb-4">¿Olvidaste tu contraseña?</h2>
 
                 <!-- Show success message if email was sent -->
                 @if (session('status'))
@@ -31,7 +30,7 @@
                 @endif
 
                 <p class="mb-4 text-muted text-center">
-                    {{ __('Enter your email address and we will send you a link to reset your password.') }}
+                    Ingresa tu correo electrónico y te enviaremos un link para restablecer tu contraseña
                 </p>
 
                 <!-- Forgot Password Form -->
@@ -39,7 +38,7 @@
                     @csrf
 
                     <div class="mb-3">
-                        <label for="email" class="form-label">{{ __('Email Address') }}</label>
+                        <label for="email" class="form-label">Correo electrónico</label>
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autofocus>
                         
                         @error('email')
@@ -51,7 +50,7 @@
 
                     <div class="d-grid gap-2">
                         <button type="submit" class="btn btn-primary btn-block" style="border-radius: 0;">
-                            {{ __('Send Password Reset Link') }}
+                            Enviar enlace de restablecimiento
                         </button>
                     </div>
                 </form>

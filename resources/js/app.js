@@ -5,6 +5,8 @@ import Swiper from 'swiper';
 
 const form = document.getElementById('form-create');
 const button = document.getElementById('submit-create');
+const togglePassword = document.getElementById('togglePassword');
+const password = document.getElementById('password');
 
 
 Dropzone.autoDiscover = false;
@@ -48,4 +50,5 @@ new Swiper('.swiper', {
     },
 
   });
+
 

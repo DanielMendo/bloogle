@@ -19,8 +19,8 @@ class RegisterController extends Controller
     {
         $request->validate([
             'name' => 'required|max:30',
-            'email' => 'required|unique:users|email|max:60',
-            'password' => 'required|min:6'
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'password' => 'required|min:8'
         ]);
 
         $slug = Str::slug($request->name);

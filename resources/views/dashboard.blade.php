@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Inicio
+@endsection
+
 @push('styles')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 @endpush
@@ -11,7 +15,7 @@
         <div class="row">
             <div class="col-12">
                 <p class="text-uppercase text-white fs-5 mb-0">Hola gente bienvenidos a</p>
-                <h2 class="text-uppercase text-white mt-0 mb-4" style="font-size: 5.2rem">B l o g o o l</h2>
+                <h2 class="text-uppercase text-white mt-0 mb-4" style="font-size: 5.2rem">B l o o g o l </h2>
                 <p class="text-uppercase text-white fs-4">Explora, comparte y descubre temas interesantes</p>
             </div>
         </div>
@@ -20,7 +24,7 @@
 
 <section style="margin: 8rem;">
     <div class="col-8 mx-auto">
-        <h3 class="fs-5 fw-normal text-center mb-5">Explora los posts por las siguientes categorías:</h3>
+        <h3 class="fs-5 fw-normal text-center mb-5">Explora las publicaciones por las siguientes categorías:</h3>
         <div class="swiper">
             <div class="swiper-wrapper">
                 @foreach ($categories as $category)
@@ -45,7 +49,7 @@
 <section class="m-5">
     <div class="col-9 mx-auto">
         <div class="row">
-            <h3 class="fs-5 fw-bold text-center">Últimos Posts</h3>
+            <h3 class="fs-5 fw-bold text-center">Últimas publicaciones</h3>
             <div class="col-12">
                 @forelse ($posts->reverse()->take(5) as $post)
                     <div class="card m-5">

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Publicaciones
+@endsection
+
 @section('content')
 
 <div class="container-sm">

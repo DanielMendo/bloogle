@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    Notificaciones
+@endsection
+
 @push('styles')
     <style>
         .main-container {
