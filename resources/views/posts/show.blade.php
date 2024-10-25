@@ -15,7 +15,7 @@
                             <img src="{{ asset('img/avatar.png') }}" class="rounded-circle"
                                 style="height: 40px; width: 40px; object-fit: cover;">
                         @else
-                            <img src="{{ Storage::disk('s3')->url('uploads/' . $post->user->profile_picture) }}"
+                            <img src="{{ asset('uploads/' . $post->user->profile_picture) }}"
                                 class="rounded-circle" style="height: 40px; width: 40px; object-fit: cover;">
                         @endif
                         <div class="d-flex flex-column">
@@ -70,7 +70,7 @@
                     <h2 class="mb-4">{{ $post->title }}</h2>
                     <p class="mb-4">{!! $post->content !!}</p>
                 </div>
-                <img src="{{ Storage::disk('s3')->url('uploads/' . $post->image) }}" class="mt-4 w-100 img-fluid"
+                <img src="{{ asset('uploads/' . $post->image) }}" class="mt-4 w-100 img-fluid"
                     alt="">
                 <hr class="mt-4">
 

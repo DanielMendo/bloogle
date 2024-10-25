@@ -105,9 +105,9 @@ class PostController extends Controller
         $post = Post::findOrFail($postId);
         $imagePath = 'uploads/' . $post->image;
 
-        Storage::disk('s3')->delete($imagePath);
-        $post->delete();
+        unlink(public_path($imagePath));;
 
+        $post->delete();
         
         return redirect()->route('profile.show', ['user' => Auth::user()->slug]);
     }

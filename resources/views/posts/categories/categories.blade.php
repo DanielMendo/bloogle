@@ -26,7 +26,7 @@
                                 <a href="{{ route('post.show', ['user' => $post->user->slug, 'post' => $post->slug]) }}" class="text-decoration-none text-black">
                                     <div class="card">
                                         <!-- Imagen del post -->
-                                        <img src="{{ Storage::disk('s3')->url('uploads/' . $post->image) }}" class="card-img-top" alt="Descripción de la imagen" style="height: 250px; object-fit: cover;">
+                                        <img src="{{ asset('uploads/' . $post->image) }}" class="card-img-top" alt="Descripción de la imagen" style="height: 250px; object-fit: cover;">
                                         <!-- Contenido de la tarjeta del post -->
                                         <div class="card-body" style="height: 230px">
                                             <p><span class="fw-bold">Autor: </span>{{ Str::limit($post->user->name, 60) }}</p>

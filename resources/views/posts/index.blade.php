@@ -15,14 +15,14 @@
                 <div class="card mb-5">
                     <div class="card-body p-0">
                         <a href="{{ route('post.show', ['user' => $post->user->slug, 'post' => $post->slug]) }}" class="text-decoration-none text-black">
-                            <img src="{{ Storage::disk('s3')->url('uploads/' . $post->image) }}" alt="Descripción de la imagen" class="w-100 img-fluid">
+                            <img src="{{ asset('uploads/' . $post->image) }}" alt="Descripción de la imagen" class="w-100 img-fluid">
                             <div class="p-3 p-md-5"> <!-- Espaciado más ligero para pantallas pequeñas -->
                                 <div class="d-flex align-items-center gap-3">
                                     @if ($post->user->profile_picture == null)
                                         <img src="{{ asset('img/avatar.png') }}" class="rounded-circle normal-avatar"
                                             style="object-fit: cover;">
                                     @else
-                                        <img src="{{ Storage::disk('s3')->url('uploads/' . $post->user->profile_picture) }}" alt="" class="rounded-circle normal-avatar" style="object-fit: cover;">
+                                        <img src="{{ asset('uploads/' . $post->user->profile_picture) }}" alt="" class="rounded-circle normal-avatar" style="object-fit: cover;">
                                     @endif
                                     <p class="mt-3"> {{$post->user->name}} </p>  
                                 </div>

@@ -14,13 +14,12 @@ class ImageController extends Controller
         $image = $request->file('file');
 
         $nameImage = Str::uuid() . "." . $image->extension();
-        
+
         $imageServer = Image::read($image);
+
+        $imagePath = public_path('uploads') . '/' . $nameImage;
+        $imageServer->save($imagePath);
         
-        $imagePath = 'uploads/' . $nameImage; 
-
-        Storage::disk('s3')->put($imagePath, (string) $imageServer->encode());
-
         return response()->json(['image' => $nameImage]);
     }
 }

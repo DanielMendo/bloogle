@@ -24,7 +24,7 @@
                                         @if ($user->profile_picture == null)
                                             <img src="{{ asset('img/avatar.png') }}" class="img-fluid">
                                         @else
-                                            <img src="{{ Storage::disk('s3')->url('uploads/' . $user->profile_picture) }}"
+                                            <img src="{{ asset('uploads/' . $user->profile_picture) }}"
                                                 alt="" class="img-fluid ">
                                         @endif
                                     </div>
@@ -110,7 +110,7 @@
                     @if ($user->profile_picture == null)
                         <img src="{{ asset('img/avatar.png') }}" class="img-fluid">
                     @else
-                        <img src="{{ Storage::disk('s3')->url('uploads/' . $user->profile_picture) }}" alt=""
+                        <img src="{{ asset('uploads/' . $user->profile_picture) }}" alt=""
                             class="img-fluid ">
                     @endif
                 </div>
@@ -137,7 +137,7 @@
                         <a href="{{ route('post.show', ['user' => $post->user->slug, 'post' => $post->slug]) }}"
                             class="text-decoration-none text-black">
                             <div class="card">
-                                <img src="{{ Storage::disk('s3')->url('uploads/' . $post->image) }}" class="card-img-top"
+                                <img src="{{ asset('uploads/' . $post->image) }}" class="card-img-top"
                                     alt="Descripción de la imagen" style="height: 200px">
                                 <div class="p-2">
                                     <div class="card-body" style="height: 140px;">
@@ -146,7 +146,7 @@
                                                 <img src="{{ asset('img/avatar.png') }}" class="rounded-circle"
                                                     style="height: 25px; width: 25px; object-fit: cover;">
                                             @else
-                                                <img src="{{ Storage::disk('s3')->url('uploads/' . $post->user->profile_picture) }}"
+                                                <img src="{{ asset('uploads/' . $post->user->profile_picture) }}"
                                                     alt="" class="rounded-circle"
                                                     style="height: 25px; width: 25px; object-fit: cover;">
                                             @endif

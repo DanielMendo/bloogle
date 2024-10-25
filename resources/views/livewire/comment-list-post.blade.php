@@ -6,7 +6,7 @@
                     <img src="{{ asset('img/avatar.png') }}" class="rounded-circle me-3 normal-avatar"
                         style="object-fit: cover;">
                 @else
-                    <img src="{{ Storage::disk('s3')->url('uploads/' . $comment->user->profile_picture) }}" alt=""
+                    <img src="{{ asset('uploads/' . $comment->user->profile_picture) }}" alt=""
                         class="rounded-circle me-3 normal-avatar" style="object-fit: cover;">
                 @endif
 
@@ -46,7 +46,7 @@
 
                     @foreach ($comment->replies as $response)
                         <div class="d-flex align-items-start mb-3">
-                            <img src="{{ Storage::disk('s3')->url('uploads/' . $response->user->profile_picture) }}"
+                            <img src="{{ asset('uploads/' . $response->user->profile_picture) }}}"
                                 alt="" class="rounded-circle me-3"
                                 style="height: 50px; width: 50px; object-fit: cover;">
 

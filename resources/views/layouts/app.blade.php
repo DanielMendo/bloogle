@@ -62,7 +62,7 @@
                                     width="35" height="35">
 
                             @else
-                                <img src="{{ Storage::disk('s3')->url('uploads/' . Auth::user()->profile_picture) }}"
+                                <img src="{{ asset('uploads/' . Auth::user()->profile_picture) }}"
                                     alt="{{ Auth::user()->name }}" class="rounded-circle position-relative"
                                     width="35" height="35">
                             @endif

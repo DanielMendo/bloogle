@@ -55,6 +55,12 @@ class AccountSettingsController extends Controller
             return back()->withErrors(['password_confirmation' => 'La contraseña es incorrecta.']);
         }
 
+        $imagePath = 'uploads/' . $user->profile_picture;
+
+        if (file_exists(public_path($imagePath))) {
+            unlink(public_path($imagePath));
+        }
+
         $user->delete();
 
         return redirect()->route('login');

@@ -57,7 +57,7 @@
                             <div class="card-body p-0">
                                 <a href="{{ route('post.show', ['user' => $post->user->slug, 'post' => $post->slug]) }}"
                                     class="text-decoration-none text-black">
-                                    <img src="{{ Storage::disk('s3')->url('uploads/' . $post->image) }}"
+                                    <img src="{{ asset('uploads/' . $post->image) }}"
                                         alt="Descripción de la imagen" class="w-100">
                                     <div class="p-4">
                                         <div class="d-flex align-items-center gap-3">
@@ -65,7 +65,7 @@
                                                 <img src="{{ asset('img/avatar.png') }}" class="rounded-circle normal-avatar"
                                                     style="object-fit: cover;">
                                             @else
-                                                <img src="{{ Storage::disk('s3')->url('uploads/' . $post->user->profile_picture) }}"
+                                                <img src="{{ asset('uploads/' . $post->user->profile_picture) }}"
                                                     class="rounded-circle normal-avatar"
                                                     style="object-fit: cover;">
                                             @endif
