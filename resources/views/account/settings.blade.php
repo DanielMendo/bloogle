@@ -4,9 +4,14 @@
     Configuración
 @endsection
 
+@push('styles')
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+@endpush
+
 @section('content')
-    <div class="container-sm mt-5">
-        <h2 class="fs-4 mb-4 text-center">Configuración de cuenta</h2>
+    <div class="container-sm mt-5 parrafo">
+        <h2 class="text-4 mb-4 text-center">Configuración de cuenta</h2>
 
         <div class="row justify-content-center">
 
@@ -14,7 +19,7 @@
             <div class="col-md-8 mb-4">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="fs-5 mb-3 mt-3">Cambiar Correo</h4>
+                        <h4 class="text-5 mb-3 mt-3">Cambiar Correo</h4>
                         
                         <!-- Mensaje de éxito -->
                         @if(session('email_success'))
@@ -39,8 +44,11 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <div class="d-flex justify-content-end">
+                            <div class="d-sm-flex d-none justify-content-end">
                                 <button type="submit" class="btn btn-primary mt-3 mb-2">Cambiar correo</button>
+                            </div>
+                            <div class="d-flex d-sm-none justify-content-end">
+                                <button type="submit" class="btn btn-primary btn-sm mt-3 mb-2">Cambiar correo</button>
                             </div>
                         </form>
                     </div>
@@ -51,7 +59,7 @@
             <div class="col-md-8 mb-4">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="fs-5 mb-3 mt-3">Cambiar Contraseña</h4>
+                        <h4 class="text-5 mb-3 mt-3">Cambiar Contraseña</h4>
                         
                         <!-- Mensaje de éxito -->
                         @if(session('password_success'))
@@ -87,8 +95,11 @@
                                 <label for="new_password_confirmation" class="form-label">Confirmar nueva contraseña</label>
                                 <input type="password" name="new_password_confirmation" id="new_password_confirmation" class="form-control" required style="height: 50px">
                             </div>
-                            <div class="d-flex justify-content-end">
+                            <div class="d-sm-flex d-none justify-content-end">
                                 <button type="submit" class="btn btn-primary mt-3 mb-2">Cambiar contraseña</button>
+                            </div>
+                            <div class="d-flex d-sm-none justify-content-end">
+                                <button type="submit" class="btn btn-primary btn-sm mt-3 mb-2">Cambiar contraseña</button>
                             </div>
                         </form>
                     </div>
@@ -99,25 +110,52 @@
             <div class="col-md-8 mb-4">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="fs-5 mb-3 mt-3 text-danger">Eliminar Cuenta</h4>
+                        <h4 class="text-5 mb-3 mt-3 text-danger">Eliminar Cuenta</h4>
                         
                         <p class="text-muted">Una vez que elimines tu cuenta, no podrás recuperarla.</p>
-                        <form action="{{ route('settings.deleteAccount', ['user' => Auth::user()->id]) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.');">
-                            @csrf
-                            @method('DELETE')
-                            <div class="mb-3">
-                                <label for="password_confirmation" class="form-label">Confirmar contraseña</label>
-                                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" required style="height: 50px">
-                                
-                                <!-- Mostrar error de confirmación de contraseña -->
-                                @error('password_confirmation')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="d-flex justify-content-end">
-                                <button type="submit" class="btn btn-danger mt-3 mb-2">Eliminar Cuenta</button>
-                            </div>
-                        </form>
+                        <!-- Botón para abrir el modal -->
+                        <div class="d-sm-flex d-none justify-content-end mt-4">
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+                                Eliminar Cuenta
+                            </button>
+                        </div>
+                        <div class="d-flex d-sm-none justify-content-end mt-4">
+                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+                                Eliminar Cuenta
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal de confirmación para eliminar cuenta -->
+            <div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteAccountModalLabel">Confirmar eliminación de cuenta</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="text-muted">Por favor, ingresa tu contraseña para confirmar la eliminación de tu cuenta. Esta acción no se puede deshacer.</p>
+                            <form action="{{ route('settings.deleteAccount', ['user' => Auth::user()->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <div class="mb-3">
+                                    <label for="password_confirmation" class="form-label">Confirmar contraseña</label>
+                                    <input type="password" name="password_confirmation" id="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" required style="height: 50px">
+                                    
+                                    <!-- Mostrar error de confirmación de contraseña -->
+                                    @error('password_confirmation')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-danger">Eliminar Cuenta</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -126,11 +164,19 @@
 @endsection
 
 @push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    togglePassword.addEventListener('click', (e) => {
-        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-        password.setAttribute('type', type);
-        e.target.classList.toggle('bi-eye');
-    })
+    document.addEventListener('DOMContentLoaded', function() {
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+        
+        if (togglePassword && password) {
+            togglePassword.addEventListener('click', function (e) {
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                e.target.classList.toggle('bi-eye');
+            });
+        }
+    });
 </script>
 @endpush

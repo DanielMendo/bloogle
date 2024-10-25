@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
+use Filament\Panel;
+use Laravel\Cashier\Billable;
+use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser; 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Filament\Panel;
 
 class User extends Authenticatable implements FilamentUser
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -27,6 +28,7 @@ class User extends Authenticatable implements FilamentUser
         'password',
         'profile_picture',
         'bio',
+        'verified'
     ];
 
     /**
@@ -89,5 +91,9 @@ class User extends Authenticatable implements FilamentUser
     {
         // Permite el acceso solo a usuarios con correos que terminen con @admin.com
         return str_ends_with($this->email, '@admin.com');
+    }
+    public function subscriptions()
+    {
+    return $this->hasMany(\Laravel\Cashier\Subscription::class);
     }
 }

@@ -15,46 +15,49 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f7f7f7; /* Color de fondo de la página */
+        }
+    </style>
 </head>
 <body>
-    <div class="container-fluid" style="height: 100vh;">
-        <div class="h-100 d-flex flex-column justify-content-center align-items-center p-4" style="background-color: #f7f7f7;">
-            <div class="p-5 bg-white shadow-sm" style="width: 50%; max-width: 500px;">
-                <h2 class="text-center text-secondary fs-4 mb-4">¿Olvidaste tu contraseña?</h2>
+    <div class="container-fluid d-flex align-items-center justify-content-center" style="height: 100vh;">
+        <div class="bg-white shadow-sm rounded p-4" style="width: 90%; max-width: 500px;">
+            <h2 class="text-center text-secondary fs-4 mb-4">¿Olvidaste tu contraseña?</h2>
 
-                <!-- Show success message if email was sent -->
-                @if (session('status'))
-                    <div class="alert alert-success text-center" role="alert">
-                        {{ session('status') }}
-                    </div>
-                @endif
+            <!-- Show success message if email was sent -->
+            @if (session('status'))
+                <div class="alert alert-success text-center" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
 
-                <p class="mb-4 text-muted text-center">
-                    Ingresa tu correo electrónico y te enviaremos un link para restablecer tu contraseña
-                </p>
+            <p class="mb-4 text-muted text-center">
+                Ingresa tu correo electrónico y te enviaremos un link para restablecer tu contraseña.
+            </p>
 
-                <!-- Forgot Password Form -->
-                <form method="POST" action="{{ route('password.email') }}">
-                    @csrf
+            <!-- Forgot Password Form -->
+            <form method="POST" action="{{ route('password.email') }}">
+                @csrf
 
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Correo electrónico</label>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autofocus>
-                        
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo electrónico</label>
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autofocus>
+                    
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
 
-                    <div class="d-grid gap-2">
-                        <button type="submit" class="btn btn-primary btn-block" style="border-radius: 0;">
-                            Enviar enlace de restablecimiento
-                        </button>
-                    </div>
-                </form>
-            </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary" style="border-radius: 0;">
+                        Enviar enlace de restablecimiento
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 

@@ -7,9 +7,82 @@
     text-decoration: underline;
 }
 
+.sm-container {
+    width: 800px;
+    margin: 0 auto;
+}
+
+.text-1 {
+    font-size: 3rem;
+}
+
+.text-2 {
+    font-size: 2.5rem;
+}
+
+.text-3 {
+    font-size: 2rem;
+}
+
+.text-4 {
+    font-size: 1.5rem;
+}
+
+.text-5 {
+    font-size: 1.25rem;
+}
+
+.text-6 {
+    font-size: 0.8rem;
+}
+
+.text-logo {
+    font-size: 5.2rem;
+}
+.parrafo {
+    font-size: unset;
+}
+
+@media (max-width: 768px) {
+    #logo {
+        font-size: 1rem!important;
+    }
+    footer {
+        font-size: 0.8rem!important;
+    }
+    .normal-avatar {
+        width: 30px!important;
+        height: 30px!important;
+    }
+    .sec-dashboard {
+        font-size: 0.8rem!important;
+    }
+    .text-1 {
+        font-size: 1.5rem!important;
+    }
+    .text-3 {
+        font-size: 1rem!important;
+    }
+    .text-5 {
+        font-size: 1rem!important;
+    }
+    .text-4 {
+        font-size: 0.9rem!important;
+    }
+    .text-logo {
+        font-size: 2rem!important;
+    }
+    .sec-indexpost {
+        font-size: 0.8rem!important;
+    }
+    .parrafo {
+        font-size: 0.8rem!important;
+    }
+}
+
 #hero {
     min-height: calc(100vh - 10rem);
-    background-image: url(/img/hero.jpeg);
+    background-image: url(/img/hero.jpg);
     background-size: cover;
     background-position: right;
     background-repeat: no-repeat;
@@ -21,6 +94,11 @@
 
 img {
     max-width: 100%;
+}
+
+.normal-avatar {
+    width: 40px;
+    height: 40px;
 }
 
 .swiper {

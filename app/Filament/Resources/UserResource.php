@@ -32,7 +32,7 @@ class UserResource extends Resource
                     ->maxLength(255),
                 Forms\Components\TextInput::make('password')
                     ->password()
-                    ->required()
+                    ->nullable()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('profile_picture')
                     ->maxLength(255)
@@ -40,6 +40,13 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('bio')
                     ->maxLength(255)
                     ->default(null),
+                Forms\Components\Select::make('verified')
+                ->options([
+                    true => 'Yes',
+                    false => 'No',
+                ])
+                ->searchable()
+                ->required(),
             ]);
     }
 

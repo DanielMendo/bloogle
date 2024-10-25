@@ -2,19 +2,36 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\PaymentSuccessController;
 use App\Http\Controllers\AccountSettingsController;
+use Laravel\Cashier\Http\Controllers\WebhookController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
+
+// Ruta de webhook con Stripe
+Route::post('/webhook', [WebhookController::class, 'handleWebhook']);
+
+Route::get('/verified', [ProductController::class, 'show'])->name('product.show');
+Route::middleware('auth')->group(function () {
+    Route::get('checkout/{plan}', [CheckoutController::class, '__invoke'])->name('checkout');
+    Route::get('/checkout/success/verified', PaymentSuccessController::class)->name('checkout.verified');
+});
+
+Route::get('subscriptions', [SubscriptionController::class, 'index'])->name('subscription.index');
+Route::get('subscriptions/verified/{subscriptionId}', [SubscriptionController::class, 'show'])->name('subscription.show');
+Route::delete('/subscription/cancel/{subscription}', [SubscriptionController::class, 'cancel'])->name('subscription.cancel');
 
 // Rutas de autenticación
 Route::get('/', [LoginController::class, 'index'])->name('login');
@@ -49,13 +66,6 @@ Route::middleware('auth')->group(function () {
     Route::put('post/update/{post}', [PostController::class, 'update'])->name('post.update');
     Route::delete('post/delete/{post}', [PostController::class, 'destroy'])->name('post.destroy');
     
-    // Rutas de comentarios
-    Route::post('post/{post}/comment', [CommentController::class, 'store'])->name('comment.store');
-    Route::delete('comment/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
-
-    // Rutas de likes
-    Route::post('/posts/{post}/likes', [LikeController::class, 'store'])->name('like.store');
-    Route::delete('/posts/{post}/likes', [LikeController::class, 'destroy'])->name('like.destroy');
 });
 
 // Rutas de categorías
@@ -65,6 +75,7 @@ Route::get('categories/{category:name}', [CategoryController::class, 'show'])->n
 Route::get('/{user:slug}', [ProfileController::class, 'show'])->name('profile.show');
 Route::get('profile/edit/{user:slug}', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::put('profile/update/{user}', [ProfileController::class, 'update'])->name('profile.update');
+
 
 // Rutas de seguidores
 Route::post('/{user:slug}/follow', [FollowerController::class, 'store'])->name('user.follow');

@@ -13,8 +13,8 @@
 @endpush
 
 @section('content')
-    <div class="container my-5 main-container">
-        <h2 class="mb-4 text-center fs-4">Notificaciones</h2>
+    <div class="container my-5 main-container sec-indexpost">
+        <h2 class="mb-4 text-center text-4">Notificaciones</h2>
 
         <!-- Panel de notificaciones -->
         <div class="card">

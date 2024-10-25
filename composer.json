@@ -9,9 +9,11 @@
         "aws/aws-sdk-php": "^3.322",
         "filament/filament": "3.2.114",
         "intervention/image-laravel": "^1.3",
+        "laravel/cashier": "^15.4",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "league/flysystem-aws-s3-v3": "3.0",
+        "livewire/livewire": "^3.5",
         "mews/purifier": "^3.4"
     },
     "require-dev": {
